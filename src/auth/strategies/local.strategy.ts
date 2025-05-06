@@ -3,7 +3,7 @@
 import { Strategy } from 'passport-local';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
-import { AuthService } from './auth.service';
+import { AuthService, UserInfo } from '../auth.service';
 
 @Injectable()
  
@@ -15,10 +15,7 @@ export class LocalStrategy extends PassportStrategy(Strategy)  {
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  validate(email: string, password: string) : any {
-
+  validate(email: string, password: string) : UserInfo {
     return this.authService.validateUser(email, password);
-    
   }
 }
