@@ -5,10 +5,10 @@ import { ChatModule } from './chat/chat.module';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [ChatModule, ConfigModule.forRoot({
+  imports: [ConfigModule.forRoot({
     isGlobal:true,
     envFilePath: '.env'
-  })],
+  }),ChatModule],
   controllers: [AppController],
   providers: [AppService],
 })
