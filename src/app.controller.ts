@@ -1,27 +1,22 @@
-import { Controller, Get, Post, UseGuards, Request } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Post, UseGuards, Request, Get } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-
-
-
+import { AuthService } from './auth/auth.service';
+import { User } from './user/user.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
+  constructor(private readonly authService: AuthService) {}
 
   @UseGuards(AuthGuard('local'))
   @Post('auth/login')
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  login(@Request() request:any) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
-    return request.user;
-
+  login(@Request() request: any) {
+    return this.authService.login(request.user as User);
   }
 
-  @UseGuards(AuthGuard('local'))
-  @Get()
+  @UseGuards(AuthGuard('jwt'))
+  @Get('/hello')
   getHello(): string {
-    return this.appService.getHello();
+    return 'Hello';
   }
 }
