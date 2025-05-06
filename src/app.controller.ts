@@ -19,6 +19,7 @@ export class AppController {
 
   }
 
+  @UseGuards(AuthGuard('local'))
   @Get()
   getHello(): string {
     return this.appService.getHello();
