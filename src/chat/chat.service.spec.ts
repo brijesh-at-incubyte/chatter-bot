@@ -8,7 +8,24 @@ describe('ChatService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ChatService, OpenAiService, ConfigService],
+      providers: [
+        ChatService,
+        OpenAiService,
+        {
+          provide: ConfigService,
+          useValue: {
+            get: jest.fn((key) => {
+              // Return mock values for specific config keys
+              switch (key) {
+                case 'YOUR_CONFIG_KEY':
+                  return 'someValue';
+                default:
+                  return null;
+              }
+            }),
+          },
+        },
+      ],
     }).compile();
 
     service = module.get<ChatService>(ChatService);

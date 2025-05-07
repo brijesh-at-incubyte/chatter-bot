@@ -20,8 +20,21 @@ describe('ChatController', () => {
             };
           },
         },
+        {
+          provide: ConfigService,
+          useValue: {
+            get: jest.fn((key) => {
+              // Return mock values for specific config keys
+              switch (key) {
+                case 'YOUR_CONFIG_KEY':
+                  return 'someValue';
+                default:
+                  return null;
+              }
+            }),
+          },
+        },
         OpenAiService,
-        ConfigService,
       ],
     }).compile();
 
