@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+ 
+ 
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { OpenAI } from "openai"
-import { CHAT_MODEL } from "src/chat/enum/chat-model.enum";
+import { CHAT_MODEL } from "../chat/enum/chat-model.enum";
 
 
 export interface ChatResponse {
@@ -16,10 +16,9 @@ export class OpenAiService {
 
     async getMessageResponse(userInput:string) : Promise<ChatResponse>{
         const openAiClient = new OpenAI({
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             apiKey: this.configService.get<string>('OPENAI_KEY'),
           });
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+           
           const response : ChatResponse = await openAiClient.responses.create({
             model: CHAT_MODEL.GPT_4o,
             input: userInput,
