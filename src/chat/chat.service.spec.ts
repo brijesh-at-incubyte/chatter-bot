@@ -8,7 +8,7 @@ describe('ChatService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ChatService, OpenAiService,ConfigService],
+      providers: [ChatService, OpenAiService, ConfigService],
     }).compile();
 
     service = module.get<ChatService>(ChatService);
@@ -17,5 +17,4 @@ describe('ChatService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
-  
 });

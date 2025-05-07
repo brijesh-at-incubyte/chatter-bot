@@ -5,6 +5,6 @@ import { OpenAiService } from 'src/services/open-ai.service';
 
 @Module({
   controllers: [ChatController],
-  providers: [ChatService, OpenAiService]
+  providers: [ChatService, OpenAiService],
 })
 export class ChatModule {}
