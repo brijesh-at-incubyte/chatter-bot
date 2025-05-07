@@ -10,6 +10,7 @@ export default tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   {
+    // '@typescript-eslint/no-unsafe-call': 'off',
     languageOptions: {
       globals: {
         ...globals.node,
@@ -23,8 +24,9 @@ export default tseslint.config(
     },
   },
   {
-    rules : {
+    rules: {
       '@typescript-eslint/no-unsafe-call': 'off',
-    }
-  },
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+    },
+  }
 );
