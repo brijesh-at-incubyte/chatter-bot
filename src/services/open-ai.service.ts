@@ -1,8 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { OpenAI } from 'openai';
-import { CHAT_MODEL } from '../chat/enum/chat-model.enum';
+ 
+ 
+import { Injectable } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import { OpenAI } from "openai"
+import { CHAT_MODEL } from "../chat/enum/chat-model.enum";
+
 
 export interface ChatResponse {
   output_text: string;
