@@ -13,6 +13,7 @@ export interface UserRequestDto {
   email:string,
   password:string
 }
+
 @Controller('auth')
 export class AuthController {
 

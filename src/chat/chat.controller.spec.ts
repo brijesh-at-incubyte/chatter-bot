@@ -1,8 +1,8 @@
+import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
+import { OpenAiService } from '.././services/open-ai.service';
 import { ChatController } from './chat.controller';
 import { ChatService } from './chat.service';
-import { OpenAiService } from '.././services/open-ai.service';
-import { ConfigService } from '@nestjs/config';
 
 describe('ChatController', () => {
   let controller: ChatController;
@@ -48,7 +48,6 @@ describe('ChatController', () => {
 
   it('should call chat service in order to get response for given userInput', async () => {
     await controller.getChatCompletionMessage('userInput');
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(service.getChatResponse).toHaveBeenCalledTimes(1);
   });
 });
