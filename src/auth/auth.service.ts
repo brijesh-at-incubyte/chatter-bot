@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { User, UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
+import { User, UserService } from '../user/user.service';
 
 export type UserInfo = Omit<User, 'password'>;
 @Injectable()
@@ -10,8 +10,8 @@ export class AuthService {
     private readonly jwtService: JwtService
   ) {}
 
-  validateUser(email: string, pass: string): UserInfo {
-    const user = this.userService.getUserByUserEmail(email);
+  async validateUser(email: string, pass: string): Promise<UserInfo> {
+    const user = await this.userService.getUserByEmail(email);
     if (!user || user.password !== pass) {
       throw new UnauthorizedException();
     }
@@ -19,9 +19,10 @@ export class AuthService {
     return result;
   }
 
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async login(user: User) {
-    const payload = { userName: user.userName, sub: user.userId };
+  login(user: UserInfo) {
+    const payload = { userName: user.userName, sub: user.id };
     return { accessToken: this.jwtService.sign(payload) };
   }
+
+ 
 }
